@@ -482,13 +482,13 @@ def user_charts():
           dates.append(entry["Date"].strftime('%m %d, %y'))
           days_passed.append(entry["Days Passed"])
 
-          #used AI for specifically the color/mode/size/textposition arguments for asthetic purposes
-          alsfrs_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Total ALSFRS-R Score'] for entry in st.session_state.followUpLog], mode='markers+text', text=dates, textposition="top center", marker=dict(color='#dc2626', size=10)))
-          bulbar_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Bulbar'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
-          fine_motor_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Fine Motor'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
-          gross_motor_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Gross Motor'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
-          respiratory_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Respiratory'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
-
+        #used AI for specifically the color/mode/size/textposition arguments for asthetic purposes
+        alsfrs_graph.add_trace(go.Scatter(x=days_passed, y=[float(e['Total ALSFRS-R Score']) for e in st.session_state.followUpLog], mode='markers+text', text=dates, textposition="top center", name="Follow-Up", marker=dict(color='#dc2626', size=12)))
+        bulbar_graph.add_trace(go.Scatter(x=days_passed, y=[float(e['Bulbar']) for e in st.session_state.followUpLog], mode='markers', name="Follow-Up", marker=dict(color='#dc2626', size=10)))
+        fine_motor_graph.add_trace(go.Scatter(x=days_passed, y=[float(e['Fine Motor']) for e in st.session_state.followUpLog], mode='markers', name="Follow-Up", marker=dict(color='#dc2626', size=10)))
+        gross_motor_graph.add_trace(go.Scatter(x=days_passed, y=[float(e['Gross Motor']) for e in st.session_state.followUpLog], mode='markers', name="Follow-Up", marker=dict(color='#dc2626', size=10)))
+        respiratory_graph.add_trace(go.Scatter(x=days_passed, y=[float(e['Respiratory']) for e in st.session_state.followUpLog], mode='markers', name="Follow-Up", marker=dict(color='#dc2626', size=10)))
+      
       st.plotly_chart(alsfrs_graph,  width = "stretch")
 
       first,second = st.columns([1,1])
