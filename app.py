@@ -483,11 +483,11 @@ def user_charts():
           days_passed.append(entry["Days Passed"])
 
           #used AI for specifically the color/mode/size/textposition arguments for asthetic purposes
-        alsfrs_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Total ALSFRS-R Score'] for entry in st.session_state.followUpLog], mode='markers+text', text=dates, textposition="top center", marker=dict(color='#dc2626', size=10)))
-        bulbar_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Bulbar'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
-        fine_motor_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Fine Motor'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
-        gross_motor_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Gross Motor'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
-        respiratory_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Respiratory'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
+          alsfrs_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Total ALSFRS-R Score'] for entry in st.session_state.followUpLog], mode='markers+text', text=dates, textposition="top center", marker=dict(color='#dc2626', size=10)))
+          bulbar_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Bulbar'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
+          fine_motor_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Fine Motor'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
+          gross_motor_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Gross Motor'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
+          respiratory_graph.add_trace(go.Scatter(x=days_passed, y=[entry['Respiratory'] for entry in st.session_state.followUpLog], mode='markers', marker=dict(color='#dc2626', size=8)))
 
       st.plotly_chart(alsfrs_graph,  width = "stretch")
 
@@ -616,7 +616,8 @@ def interventions():
     map_data,
     lat="latitude",
     lon="longitude",
-    hover_name="name", 
+    hover_name="name",
+    center=dict(lat=37.54, lon=-122.31),
     zoom=10,)
 
 
