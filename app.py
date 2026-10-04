@@ -479,8 +479,8 @@ def user_charts():
         dates = []
         days_passed = []
         for entry in st.session_state.followUpLog:
-          dates.append(entry["Date"].strftime('%m %d, %y'))
-          days_passed.append(entry["Days Passed"])
+          dates.append(str(entry["Date"].strftime('%B %d, %Y')))
+          days_passed.append(int(entry["Days Passed"]))
 
         #used AI for specifically the color/mode/size/textposition arguments for asthetic purposes
         alsfrs_graph.add_trace(go.Scatter(x=days_passed, y=[float(e['Total ALSFRS-R Score']) for e in st.session_state.followUpLog], mode='markers+text', text=dates, textposition="top center", name="Follow-Up", marker=dict(color='#dc2626', size=12)))
