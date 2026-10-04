@@ -437,9 +437,13 @@ def user_charts():
             st.rerun()
 
   with graph_area:
+      max_days_logged = 365
+      if st.session_state.followUpLog:
+          max_days_logged = max([int(e["Days Passed"]) for e in st.session_state.followUpLog] + [365])
+      
       st.markdown('<div class="medical-card">', unsafe_allow_html=True)
       st.subheader("Your Personalized Predicted Trajectory")
-      days_timeline = np.array(range(0, 366))
+      days_timeline = np.array(range(0, max_days_logged+20))
 
 
       daily_alsfrs_slope = st.session_state.predicted_alsfrs_slope
@@ -454,9 +458,7 @@ def user_charts():
       y_gross_motor = np.clip(base_gross_motor + (daily_gross_motor_slope * days_timeline), 0, 12)
       y_respiratory = np.clip(base_respiratory + (daily_respiratory_slope * days_timeline), 0, 12)
 
-      max_days_logged = 365
-      if st.session_state.followUpLog:
-          max_days_logged = max([int(e["Days Passed"]) for e in st.session_state.followUpLog] + [365])
+      
           
       #function built with the help of AI to build base of graph + adjust the colors and layout/appearances
       def build_graph(timeline_y, baseline_val, title_text, y_max, trace_color, line_style='solid'):
