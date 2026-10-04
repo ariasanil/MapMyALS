@@ -612,7 +612,7 @@ def interventions():
       
     })
 
-  fig = px.scatter_mapbox(
+  fig = px.scatter_map(
     map_data,
     lat="latitude",
     lon="longitude",
@@ -621,7 +621,7 @@ def interventions():
 
 
   fig.update_layout(
-    mapbox_style="open-street-map",
+    map_style="open-street-map",
     margin={"r": 0, "t": 0, "l": 0, "b": 0}, 
     height=500,)
 
