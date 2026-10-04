@@ -454,6 +454,10 @@ def user_charts():
       y_gross_motor = np.clip(base_gross_motor + (daily_gross_motor_slope * days_timeline), 0, 12)
       y_respiratory = np.clip(base_respiratory + (daily_respiratory_slope * days_timeline), 0, 12)
 
+      max_days_logged = 365
+      if st.session_state.followUpLog:
+          max_days_logged = max([int(e["Days Passed"]) for e in st.session_state.followUpLog] + [365])
+          
       #function built with the help of AI to build base of graph + adjust the colors and layout/appearances
       def build_graph(timeline_y, baseline_val, title_text, y_max, trace_color, line_style='solid'):
         f = go.Figure()
@@ -464,7 +468,7 @@ def user_charts():
           xaxis_title="Days Elapsed", yaxis_title="Score",
           showlegend=False, margin=dict(l=15, r=15, t=35, b=15),
           plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-          xaxis=dict(showgrid=True, gridcolor='#e2e8f0', range=[-10, 380], tickmode='array', tickvals= [0, 30, 60, 90, 180, 270, 365]),
+          xaxis=dict(showgrid=True, gridcolor='#e2e8f0', range=[-10, max_days_logged + 20], tickmode='array', tickvals= [0, 30, 60, 90, 180, 270, 365]),
           yaxis=dict(showgrid=True, gridcolor='#e2e8f0', range=[-0.5, y_max + 0.5])
           )
         return f
